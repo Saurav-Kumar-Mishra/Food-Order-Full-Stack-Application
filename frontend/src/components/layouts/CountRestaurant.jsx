@@ -1,14 +1,42 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { getRestaurants } from "../../actions/restaurantAction";
+import { useDispatch, useSelector } from "react-redux";
 
 function CountRestaurant() {
+  const dispatch = useDispatch();
+
+  const { loading, error, count, showVegOnly, pureVegRestaurantsCount } =
+    useSelector((state) => state.restaurants);
+
+  useEffect(() => {
+    dispatch(getRestaurants());
+  }, []);
+
   return (
     <div>
-      <p className='NumOfRestro'>
-        8 <span className='Restro'>Restaurant</span>
-      </p>
-      <hr/>
+      {loading ? (
+        <p> Loading Restaurant count ...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+        <p className="NumOfRestro">
+          {showVegOnly ? pureVegRestaurantsCount : count}
+          <span className="Restro">
+            {" "}
+            {showVegOnly
+              ? pureVegRestaurantsCount === 1
+                ? "Restaurant"
+                : "Restaurants"
+              : count === 1
+              ? "Restaurant"
+              : "Restaurants"}
+          </span>
+        </p>
+      )}
+
+      <hr />
     </div>
-  )
+  );
 }
 
-export default CountRestaurant
+export default CountRestaurant;
