@@ -6,7 +6,7 @@ import Restaurant from "./components/layouts/Restaurant";
 import Footer from "./components/layouts/Footer";
 import Menu from "./components/layouts/Menu";
 export default function App() {
-  return <div>
+  return <div className="App">
     <Header/>
     <div className="container container-fluid">
     {/* <Home/> */}

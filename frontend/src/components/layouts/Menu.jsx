@@ -9,6 +9,15 @@ function Menu() {
         <hr/>
         <div className='row'>
           <FoodItem/>
+          <FoodItem/>
+          <FoodItem/>
+        </div>
+      </div>
+      <div>
+        <h2>Main Course</h2>
+        <hr/>
+        <div className='row'>
+          <FoodItem/>
         </div>
       </div>
     </div>
