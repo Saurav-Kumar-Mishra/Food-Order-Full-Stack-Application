@@ -3,15 +3,15 @@ import CountRestaurant from "./CountRestaurant";
 import Restaurant from "./Restaurant";
 import {
   getRestaurants,
-  sortByReviews,
   sortByRatings,
+  sortByReviews,
   toggleVegOnly,
 } from "../../actions/restaurantAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 import Message from "./Message";
 
-function Home() {
+export default function Home() {
   const dispatch = useDispatch();
 
   const {
@@ -20,25 +20,24 @@ function Home() {
     restaurants,
     showVegOnly,
   } = useSelector((state) => state.restaurants);
-  console.log(restaurants);
+
   useEffect(() => {
     dispatch(getRestaurants());
-  }, []);
+  }, [dispatch]);
 
   const handleSortByReview = () => {
     dispatch(sortByReviews());
   };
 
-  const handleSortByRating = () => {
+  const handleSortByRatings = () => {
     dispatch(sortByRatings());
   };
-
   const handleToggleVegOnly = () => {
     dispatch(toggleVegOnly());
   };
 
   return (
-    <div>
+    <>
       <CountRestaurant />
       {restaurantsLoading ? (
         <Loader />
@@ -54,8 +53,8 @@ function Home() {
               <button className="sort_rev p-3" onClick={handleSortByReview}>
                 Sort By Review
               </button>
-              <button className="sort_rate p-3" onClick={handleSortByRating}>
-                Sort By Rating
+              <button className="sort_rate p-3" onClick={handleSortByRatings}>
+                Sort By Ratings
               </button>
             </div>
             <div className="row mt-4">
@@ -66,14 +65,12 @@ function Home() {
                   ) : null
                 )
               ) : (
-                <Message variant="info"> No Restaurant Found</Message>
+                <Message variant="info"> No restaurants Found.</Message>
               )}
             </div>
           </section>
         </>
       )}
-    </div>
+    </>
   );
 }
-
-export default Home;

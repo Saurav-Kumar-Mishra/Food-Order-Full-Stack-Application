@@ -27,6 +27,7 @@ export const restaurantReducer = (state = initialState, action) => {
         count: action.payload.count,
         restaurants: action.payload.restaurants,
       };
+
     case ALL_RESTAURANTS_FAIL:
       return {
         ...state,
@@ -48,7 +49,8 @@ export const restaurantReducer = (state = initialState, action) => {
           (a, b) => b.numOfReviews - a.numOfReviews
         ),
       };
-    case TOGGLE_VEG_ONLY: {
+
+    case TOGGLE_VEG_ONLY:
       return {
         ...state,
         showVegOnly: !state.showVegOnly,
@@ -57,22 +59,21 @@ export const restaurantReducer = (state = initialState, action) => {
           !state.showVegOnly
         ),
       };
-    }
-    case CLEAR_ERROR:{
+    case CLEAR_ERROR:
       return {
         ...state,
-        error:null
+        error: null,
       };
-    }
+
     default:
       return state;
   }
 };
 
-const calculatePureVegCount = (restaurants, showVegOnly)=>{
-  if(!showVegOnly){
+const calculatePureVegCount = (restaurants, showVegOnly) => {
+  if (!showVegOnly) {
     return restaurants.length;
-  } else{
-    return restaurants.filter((restaurant) => restaurant.isVeg)
-.length  }
-}
+  } else {
+    return restaurants.filter((restaurant) => restaurant.isVeg).length;
+  }
+};
