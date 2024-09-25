@@ -117,7 +117,7 @@ const Cart = () => {
                     <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                       <div className="stockCounter d-inline">
                         <span
-                          className="btn btn-danger minus"
+                          className="btn btn-danger minus bt"
                           onClick={() =>
                             decreaseQty(item.foodItem, item.quantity)
                           }
